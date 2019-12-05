@@ -9,6 +9,8 @@ public class RubyController : MonoBehaviour
     public int maxHealth = 5;
     public float timeInvincible = 2.0f;
     public GameObject projectilePrefab;
+    public GameObject damageEffectPrefab;
+    public GameObject healthEffectPrefab;
 
     public int health { get { return currentHealth; } }
     int currentHealth;
@@ -68,16 +70,23 @@ public class RubyController : MonoBehaviour
 
     public void ChangeHealth(int amount)
     {
+        // player either gains or loses health
         if (amount < 0)
         {
-            animator.SetTrigger("Hit");
             if (isInvincible)
                 return;
 
+            animator.SetTrigger("Hit");
             isInvincible = true;
             invincibleTimer = timeInvincible;
+            GameObject damageVFX = Instantiate(damageEffectPrefab, rigidbody2d.position + Vector2.up * 0.6f, Quaternion.identity);
+        }
+        else
+        {
+            GameObject healthVFX = Instantiate(healthEffectPrefab, rigidbody2d.position + Vector2.up * 0.6f, Quaternion.identity);
         }
 
+        // proceed to update player's currentHealth variable
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
 
         Debug.Log(currentHealth + "/" + maxHealth);
