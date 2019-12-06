@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1480471722778557770}
   - component: {fileID: 8859987189019292553}
   m_Layer: 8
-  m_Name: Ruby
+  m_Name: ruby
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,6 +108,7 @@ MonoBehaviour:
     type: 3}
   projectileClip: {fileID: 8300000, guid: b2edfd40873655249ba0e01a5cf705be, type: 3}
   damagedClip: {fileID: 8300000, guid: 9b1bb1f450b7d444fa4a8019d13519a7, type: 3}
+  walkingClip: {fileID: 8300000, guid: a20c77ecd5de9eb4a98731b45ad84c3e, type: 3}
 --- !u!50 &2319476539141187969
 Rigidbody2D:
   serializedVersion: 4

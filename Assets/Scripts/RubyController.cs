@@ -5,7 +5,6 @@ using UnityEngine;
 public class RubyController : MonoBehaviour
 {
     public float speed = 3.0f;
-
     public int maxHealth = 5;
     public float timeInvincible = 2.0f;
     public GameObject projectilePrefab;
@@ -13,6 +12,7 @@ public class RubyController : MonoBehaviour
     public GameObject healthEffectPrefab;
     public AudioClip projectileClip;
     public AudioClip damagedClip;
+    public AudioClip walkingClip;
     AudioSource audioSource;
 
     public int health { get { return currentHealth; } }
@@ -25,7 +25,6 @@ public class RubyController : MonoBehaviour
     Animator animator;
     Vector2 lookDirection = new Vector2(1, 0);
 
-    // Start is called before the first frame update
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
@@ -35,11 +34,19 @@ public class RubyController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
+        
+        if(horizontal != 0 || vertical != 0) // walking
+        {
+            PlaySound(walkingClip);
+        }
+        // else // not walking
+        // {
+        //     StopSound();
+        // }
 
         Vector2 move = new Vector2(horizontal, vertical);
 
@@ -125,4 +132,9 @@ public class RubyController : MonoBehaviour
     {
         audioSource.PlayOneShot(clip);
     }
+
+    // public void StopSound()
+    // {
+    //     audioSource.Stop();
+    // }
 }
