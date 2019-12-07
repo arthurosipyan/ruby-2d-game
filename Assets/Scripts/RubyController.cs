@@ -43,9 +43,9 @@ public class RubyController : MonoBehaviour
         {
             PlaySound(walkingClip);
         }
-        // else // not walking
+        // else if(horizontal == 0 && vertical == 0) // not walking
         // {
-        //     StopSound();
+        //     audioSource.Stop();
         // }
 
         Vector2 move = new Vector2(horizontal, vertical);
@@ -133,8 +133,4 @@ public class RubyController : MonoBehaviour
         audioSource.PlayOneShot(clip);
     }
 
-    // public void StopSound()
-    // {
-    //     audioSource.Stop();
-    // }
 }
