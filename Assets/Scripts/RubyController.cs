@@ -19,6 +19,7 @@ public class RubyController : MonoBehaviour
     int currentHealth;
     bool isInvincible;
     float invincibleTimer;
+    bool isMoving = false;
 
     Rigidbody2D rigidbody2d;
 
@@ -41,12 +42,17 @@ public class RubyController : MonoBehaviour
         
         if(horizontal != 0 || vertical != 0) // walking
         {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
+
+        if (isMoving && !audioSource.isPlaying)
+        {
             PlaySound(walkingClip);
         }
-        // else if(horizontal == 0 && vertical == 0) // not walking
-        // {
-        //     audioSource.Stop();
-        // }
 
         Vector2 move = new Vector2(horizontal, vertical);
 
