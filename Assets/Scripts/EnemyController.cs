@@ -14,16 +14,18 @@ public class EnemyController : MonoBehaviour
     public ParticleSystem smokeEffect;
     float timer;
     int direction = 1;
+    public AudioClip enemyHit1;
+    public AudioClip enemyHit2;
+    AudioSource audioSource;
 
-    // Start is called before the first frame update
     void Start()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
         timer = changeTime;
+        rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!broken)
@@ -68,11 +70,25 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public void Fix(){
+    public void Fix()
+    {
+        if(Random.Range(0,2) == 0)
+        {
+            PlaySound(enemyHit1);
+        }
+        else
+        {
+            PlaySound(enemyHit2);
+        }
         
         broken = false;
         rigidbody2D.simulated = false;
         animator.SetTrigger("Fixed");
         smokeEffect.Stop();
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 }

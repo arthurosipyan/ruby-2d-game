@@ -149,6 +149,8 @@ MonoBehaviour:
   vertical: 0
   changeTime: 3
   smokeEffect: {fileID: 5993197818849998852}
+  enemyHit1: {fileID: 8300000, guid: ae904c7305df7344d86b2092c0cb3a26, type: 3}
+  enemyHit2: {fileID: 8300000, guid: 709a835b61b848644946696fdd5e5a4d, type: 3}
 --- !u!95 &2301547386454282655
 Animator:
   serializedVersion: 3
